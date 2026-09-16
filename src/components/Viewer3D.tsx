@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { useAuth } from '../contexts/AuthContext';
-import { LogOut, Upload } from 'lucide-react';
 
 export function Viewer3D() {
   const mountRef = useRef<HTMLDivElement>(null);
@@ -75,11 +74,11 @@ export function Viewer3D() {
           <span style={{ fontSize: '0.875rem', color: '#94a3b8' }}>{user?.email}</span>
         </div>
         <div style={{ display: 'flex', gap: '1rem' }}>
-          <button style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: '#3b82f6', color: 'white', border: 'none', padding: '0.5rem 1rem', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}>
-            <Upload size={18} /> Upload Modelo
+          <button style={{ background: '#3b82f6', color: 'white', border: 'none', padding: '0.5rem 1rem', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}>
+            📁 Upload Modelo
           </button>
-          <button onClick={signOut} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'transparent', color: '#ef4444', border: '1px solid #ef4444', padding: '0.5rem 1rem', borderRadius: '4px', cursor: 'pointer' }}>
-            <LogOut size={18} /> Sair
+          <button onClick={signOut} style={{ background: 'transparent', color: '#ef4444', border: '1px solid #ef4444', padding: '0.5rem 1rem', borderRadius: '4px', cursor: 'pointer' }}>
+            🚪 Sair
           </button>
         </div>
       </header>
