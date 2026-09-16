@@ -1,9 +1,8 @@
 import { AppRoutes } from './routes/AppRoutes';
 import { AuthProvider } from './contexts/AuthContext';
 import { ErrorBoundary } from './components/ErrorBoundary';
-import './App.css';
 
-function App() {
+export default function App() {
   return (
     <ErrorBoundary>
       <AuthProvider>
@@ -12,5 +11,3 @@ function App() {
     </ErrorBoundary>
   );
 }
-
-export default App;

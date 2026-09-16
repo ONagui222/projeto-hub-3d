@@ -20,11 +20,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setSession(session);
       setUser(session?.user ?? null);
       setLoading(false);
-    });
+    }).catch(() => setLoading(false));
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
       setUser(session?.user ?? null);
+      setLoading(false);
     });
 
     return () => subscription.unsubscribe();
@@ -32,7 +33,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const signOut = () => supabase.auth.signOut();
 
-  if (loading) return <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', background: '#0f172a', color: 'white'}}>Carregando...</div>;
+  if (loading) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', background: '#0f172a', color: 'white', fontFamily: 'sans-serif' }}>
+        Carregando Hub 3D...
+      </div>
+    );
+  }
 
   return <AuthContext.Provider value={{ session, user, signOut }}>{children}</AuthContext.Provider>;
 };

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { Rocket } from 'lucide-react';
 
 export function Auth() {
   const { session } = useAuth();
@@ -28,33 +27,60 @@ export function Auth() {
   };
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0f172a', color: 'white' }}>
-      <div style={{ background: '#1e293b', padding: '2rem', borderRadius: '8px', width: '100%', maxWidth: '400px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', marginBottom: '2rem' }}>
-          <Rocket size={32} color="#3b82f6" />
-          <h1 style={{ margin: 0, fontSize: '1.5rem' }}>Hub 3D</h1>
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0f172a', color: 'white', fontFamily: 'sans-serif' }}>
+      <div style={{ background: '#1e293b', padding: '2rem', borderRadius: '12px', width: '100%', maxWidth: '380px', boxShadow: '0 10px 25px rgba(0,0,0,0.3)', border: '1px solid #334155' }}>
+        <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+          <h1 style={{ margin: 0, fontSize: '1.8rem', color: '#60a5fa' }}>🚀 Hub 3D</h1>
+          <p style={{ margin: '0.5rem 0 0', fontSize: '0.9rem', color: '#94a3b8' }}>
+            {isLogin ? 'Entre na sua conta' : 'Crie sua conta para começar'}
+          </p>
         </div>
         
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-          {error && <div style={{ background: '#ef444420', color: '#ef4444', padding: '0.75rem', borderRadius: '4px', fontSize: '0.875rem' }}>{error}</div>}
+          {error && (
+            <div style={{ background: '#ef444420', color: '#f87171', padding: '0.75rem', borderRadius: '6px', fontSize: '0.85rem', border: '1px solid #ef444440' }}>
+              {error}
+            </div>
+          )}
           
           <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem' }}>Email</label>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required style={{ width: '100%', padding: '0.75rem', borderRadius: '4px', border: '1px solid #334155', background: '#0f172a', color: 'white', boxSizing: 'border-box' }} />
+            <label style={{ display: 'block', marginBottom: '0.4rem', fontSize: '0.85rem', color: '#cbd5e1' }}>E-mail</label>
+            <input 
+              type="email" 
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
+              required 
+              placeholder="seu@email.com"
+              style={{ width: '100%', padding: '0.75rem', borderRadius: '6px', border: '1px solid #334155', background: '#0f172a', color: 'white', boxSizing: 'border-box' }} 
+            />
           </div>
           
           <div>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.875rem' }}>Senha</label>
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required style={{ width: '100%', padding: '0.75rem', borderRadius: '4px', border: '1px solid #334155', background: '#0f172a', color: 'white', boxSizing: 'border-box' }} />
+            <label style={{ display: 'block', marginBottom: '0.4rem', fontSize: '0.85rem', color: '#cbd5e1' }}>Senha</label>
+            <input 
+              type="password" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              required 
+              placeholder="••••••••"
+              style={{ width: '100%', padding: '0.75rem', borderRadius: '6px', border: '1px solid #334155', background: '#0f172a', color: 'white', boxSizing: 'border-box' }} 
+            />
           </div>
 
-          <button type="submit" disabled={loading} style={{ width: '100%', padding: '0.75rem', borderRadius: '4px', background: '#3b82f6', color: 'white', border: 'none', cursor: loading ? 'not-allowed' : 'pointer', marginTop: '1rem', fontWeight: 'bold' }}>
-            {loading ? 'Aguarde...' : (isLogin ? 'Entrar' : 'Criar Conta')}
+          <button 
+            type="submit" 
+            disabled={loading} 
+            style={{ width: '100%', padding: '0.75rem', borderRadius: '6px', background: '#2563eb', color: 'white', border: 'none', cursor: loading ? 'not-allowed' : 'pointer', marginTop: '0.5rem', fontWeight: 'bold', fontSize: '0.95rem' }}
+          >
+            {loading ? 'Aguarde...' : (isLogin ? 'Entrar' : 'Cadastrar')}
           </button>
         </form>
 
-        <button onClick={() => setIsLogin(!isLogin)} style={{ width: '100%', background: 'none', border: 'none', color: '#94a3b8', marginTop: '1rem', cursor: 'pointer', fontSize: '0.875rem' }}>
-          {isLogin ? 'Não tem uma conta? Cadastre-se' : 'Já tem uma conta? Entre'}
+        <button 
+          onClick={() => setIsLogin(!isLogin)} 
+          style={{ width: '100%', background: 'none', border: 'none', color: '#94a3b8', marginTop: '1.2rem', cursor: 'pointer', fontSize: '0.85rem' }}
+        >
+          {isLogin ? 'Não tem conta? Cadastre-se' : 'Já tem conta? Entrar'}
         </button>
       </div>
     </div>
